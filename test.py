@@ -13,7 +13,6 @@ std = [0.2023, 0.1994, 0.2010]
 # Define required variables
 batch_size = 32
 num_classes = 10
-epochs = 20
 
 device = torch.device('cpu')
 

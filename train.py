@@ -73,16 +73,11 @@ class ConvNet(nn.Module):
 model = ConvNet(num_classes=num_classes)
 
 criteron = nn.CrossEntropyLoss()
-#optimizer = torch.optim.SGD(
-#    model.parameters(),
-#    lr=learning_rate, 
-#    weight_decay=0.005, 
-#    momentum=0.9
-#)
-optimizer = torch.optim.Adam(
+optimizer = torch.optim.SGD(
     model.parameters(),
-    lr=learning_rate,
-    weight_decay=0.005,
+    lr=learning_rate, 
+    weight_decay=0.005, 
+    momentum=0.9
 )
 
 total_steps = len(train_loader)
