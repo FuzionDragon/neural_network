@@ -18,7 +18,7 @@ std = [0.2023, 0.1994, 0.2010]
 batch_size = 48
 num_classes = 10
 learning_rate = 0.001
-epochs = 20
+epochs = 25
 
 device = torch.device('cpu')
 
