@@ -11,7 +11,7 @@ mean = [0.4914, 0.4822, 0.4465]
 std = [0.2023, 0.1994, 0.2010]
 
 # Define required variables
-batch_size = 32
+batch_size = 128
 num_classes = 10
 
 device = torch.device('cpu')

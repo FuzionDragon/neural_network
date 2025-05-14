@@ -15,10 +15,10 @@ mean = [0.4914, 0.4822, 0.4465]
 std = [0.2023, 0.1994, 0.2010]
 
 # Define required variables
-batch_size = 48
+batch_size = 128
 num_classes = 10
-learning_rate = 0.001
-epochs = 20
+learning_rate = 0.015
+epochs = 30
 
 device = torch.device('cpu')
 
