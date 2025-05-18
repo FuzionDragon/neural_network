@@ -68,6 +68,7 @@ class ConvNet(nn.Module):
 model_path = "model.pth"
 model = ConvNet(num_classes=num_classes)
 model.load_state_dict(torch.load(model_path))
+model.eval()
 
 with torch.no_grad():
     correct = 0

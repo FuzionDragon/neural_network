@@ -17,12 +17,13 @@ std = [0.2023, 0.1994, 0.2010]
 # Define required variables
 batch_size = 128
 num_classes = 10
-learning_rate = 0.015
+learning_rate = 0.003
 epochs = 30
 
 device = torch.device('cpu')
 
 transform = transforms.Compose([
+    transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     transforms.Normalize(mean, std)
 ])
@@ -42,7 +43,6 @@ class ConvNet(nn.Module):
             nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3),
             nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.layer3 = nn.Sequential(
             nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3),
@@ -53,8 +53,8 @@ class ConvNet(nn.Module):
             nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2, stride=2)
         )
+        self.max_pool = nn.MaxPool2d(kernel_size=2, stride=2)
         self.fc = nn.Sequential(
             nn.Linear(1600, 128),
             nn.ReLU(),
@@ -64,8 +64,10 @@ class ConvNet(nn.Module):
     def forward(self, x):
         out = self.layer1(x)
         out = self.layer2(out)
+        out = self.max_pool(out)
         out = self.layer3(out)
         out = self.layer4(out)
+        out = self.max_pool(out)
         out = out.reshape(out.size(0), -1)
         out = self.fc(out)
         return out
